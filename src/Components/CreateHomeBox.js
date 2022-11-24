@@ -67,7 +67,7 @@ export default function CreateHomeBox() {
         {playerArray.map((i, index) =>
           i.number !== "" && i.name !== "" ? (
             <HomeMemberTags
-              key={index}
+              key={i.number}
               index={index}
               number={i.number}
               name={i.name}

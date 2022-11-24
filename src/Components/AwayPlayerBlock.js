@@ -10,7 +10,7 @@ export default function AwayPlayerBlock() {
     <>
       {playerArray.map((i, index) =>
         i.number !== "" && i.name !== "" ? (
-          <PlayerPoint point={`60px`} toppoint={`100px`}>
+          <PlayerPoint key={i.number} point={`60px`} toppoint={`100px`}>
             <Draggable>
               <Div>
                 <Player>{i.number}</Player>

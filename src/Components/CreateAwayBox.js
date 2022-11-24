@@ -63,7 +63,7 @@ export default function CreateAwayBox() {
         {playerArray.map((i, index) =>
           i.number !== "" && i.name !== "" ? (
             <AwayMemberTags
-              key={index}
+              key={i.number}
               index={index}
               number={i.number}
               name={i.name}

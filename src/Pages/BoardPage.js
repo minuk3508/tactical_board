@@ -21,7 +21,7 @@ export default function BoardPage() {
         </PlayerListContainer>
         <BoardContainer transformValue={transformValue ? "80%" : "50%"}>
           <Title transformValue={transformValue ? "-150%" : "0%"}>
-            Tactics Board
+            Tactical Board
           </Title>
           {/* <FullButton
             onClick={fullScreenMode}
@@ -34,7 +34,7 @@ export default function BoardPage() {
             transformValue={transformValue ? "80%" : "50%"}
             transformYValue={transformValue ? "-5%" : "0%"}
           >
-            <CanvasBackground src={imgSrc} />
+            <CanvasBackground src={imgSrc} alt="작전판, tactical board" />
             <HomePlayerBlock />
             <AwayPlayerBlock />
           </CanvasWrapper>
@@ -68,7 +68,7 @@ const FullButton = styled.div`
     cursor: pointer;
   }
 `;
-const Title = styled.div`
+const Title = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,7 +151,7 @@ const PlayerListContainer = styled.div`
   transform: translateX(${(props) => props.transformValue});
   transition: all 0.3s;
 `;
-const CanvasWrapper = styled.div`
+const CanvasWrapper = styled.section`
   position: relative;
   overflow: hidden;
   width: 95%;
@@ -159,6 +159,7 @@ const CanvasWrapper = styled.div`
   opacity: 0.9;
   transform: translateY(${(props) => props.transformYValue});
   transition: all 0.3s;
+  border-radius: 10px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
     0 4px 4px rgba(0, 0, 0, 0.11), 0 8px 8px rgba(0, 0, 0, 0.11),
     0 16px 16px rgba(0, 0, 0, 0.11), 0 32px 32px rgba(0, 0, 0, 0.11);
