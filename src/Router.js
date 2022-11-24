@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CreateTeamPage from "./Pages/CreateTeamPage";
+import BoardPage from "./Pages/BoardPage";
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<CreateTeamPage />} />
+        <Route path="/" element={<BoardPage />} />
       </Routes>
     </BrowserRouter>
   );

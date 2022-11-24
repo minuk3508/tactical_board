@@ -19,3 +19,8 @@ export const awayListSettingState = atom({
   key: "awayListSettingState",
   default: false,
 });
+
+export const foldAndSpreadState = atom({
+  key: "foldAndSpreadState",
+  default: false,
+});

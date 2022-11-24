@@ -2,11 +2,10 @@ import styled from "styled-components";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { awayListSettingState, awayPlayerListState } from "../AtomStore";
+import { awayPlayerListState } from "../AtomStore";
 import AwayMemberTags from "./MemberTag_away";
 
 export default function CreateAwayBox() {
-  const [isSet, setIsSet] = useRecoilState(awayListSettingState);
   const [numbering, setNumbering] = useState("");
   const [naming, setNaming] = useState("");
   const [playerArray, setPlayerArray] = useRecoilState(awayPlayerListState);
@@ -33,193 +32,143 @@ export default function CreateAwayBox() {
       await setNaming("");
     }
   };
-  const teamSetting = () => {
-    setIsSet((prev) => !prev);
-  };
+
   return (
-    <AwayTeamWrapper>
-      <AwayTitle>AWAY</AwayTitle>
-      <AwayTeam>
+    <>
+      <AwayTeamWrapper>
+        <AwayTitle>AWAY</AwayTitle>
         <AddMembersBox>
-          {isSet && <Covering />}
           <InputMember>
-            <InputLabel>
-              등번호 :
-              <InputNumber
-                type="text"
-                onChange={numberChange}
-                value={numbering}
-              />
-            </InputLabel>
-            <InputLabel>
-              이름 :
-              <InputName type="text" onChange={namerChange} value={naming} />
-            </InputLabel>
-          </InputMember>
-          <AddMemberButtonBox>
+            <InputNumber
+              type="text"
+              onChange={numberChange}
+              value={numbering}
+              placeholder="Number"
+            />
+
+            <InputName
+              type="text"
+              onChange={namerChange}
+              value={naming}
+              placeholder="Player Name"
+            />
             <AddMemberButton onClick={addPlayer}>
+              <Span>ADD PLAYER </Span>
               <AiOutlineUserAdd />
             </AddMemberButton>
-            ADD
-          </AddMemberButtonBox>
+          </InputMember>
         </AddMembersBox>
-        <ViewMembers>
-          {isSet && <Covering />}
-          {playerArray.map((i, index) =>
-            i.number !== "" && i.name !== "" ? (
-              <AwayMemberTags
-                key={index}
-                index={index}
-                number={i.number}
-                name={i.name}
-              />
-            ) : null
-          )}
-        </ViewMembers>
-        <ConfirmButtonBox>
-          <ConfirmButton onClick={teamSetting}>구성 완료</ConfirmButton>
-        </ConfirmButtonBox>
-      </AwayTeam>
-    </AwayTeamWrapper>
+      </AwayTeamWrapper>
+      <ViewMembers>
+        {playerArray.map((i, index) =>
+          i.number !== "" && i.name !== "" ? (
+            <AwayMemberTags
+              key={index}
+              index={index}
+              number={i.number}
+              name={i.name}
+            />
+          ) : null
+        )}
+      </ViewMembers>
+    </>
   );
 }
-
 const ViewMembers = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  width: 100%;
-  height: 50%;
-  border-top: 1px solid rgba(199, 199, 199, 0.5);
-  border-bottom: 1px solid rgba(199, 199, 199, 0.5);
+  width: 90%;
+  height: 45%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
   padding: 3%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
 `;
-const Covering = styled.div`
-  padding-left: inherit;
-  padding-right: inherit;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-`;
-
-const ConfirmButton = styled.button`
-  width: 30%;
-  height: 50%;
-  border: none;
-  font-weight: 700;
-  color: white;
-  background-color: #5dc76d;
-  border-radius: 10px;
-  :hover {
-    cursor: pointer;
-    background-color: #88e396;
-  }
-`;
-const AddMemberButtonBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 20%;
-  height: 60%;
-  color: rgba(199, 199, 199, 0.8);
-  font-weight: 700;
-`;
-const AddMemberButton = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: auto;
-  font-size: 40px;
-  color: rgba(199, 199, 199, 0.8);
-  :hover {
-    cursor: pointer;
-    color: black;
-  }
-`;
-const InputMember = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 80%;
-  height: 100%;
-`;
-const InputLabel = styled.label`
-  font-size: 20px;
-  font-weight: 500;
-`;
-const InputNumber = styled.input`
-  width: 30%;
-  height: auto;
-  font-size: 25px;
-  font-weight: 700;
-  margin-left: 20px;
-  outline: none;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 0.1rem solid rgba(199, 199, 199, 0.5);
-`;
-const InputName = styled.input`
-  width: 60%;
-  height: auto;
-  font-size: 20px;
-  font-weight: 700;
-  margin-left: 20px;
-  outline: none;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 0.1rem solid rgba(199, 199, 199, 0.5);
-`;
-
-const AddMembersBox = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 30%;
-  padding: 5% 5%;
-`;
-const ConfirmButtonBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 20%;
-`;
-
 const AwayTeamWrapper = styled.div`
-  position: relative;
-  width: 400px;
-  height: 550px;
+  width: 80%;
+  height: 40%;
+  border-radius: 15px;
+  backdrop-filter: blur(100px);
 `;
 const AwayTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 10%;
+  height: 20%;
   font-size: 30px;
   font-weight: 700;
+  color: white;
 `;
-const AwayTeam = styled.div`
+
+const AddMembersBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 90%;
-  border-radius: 20px;
+  height: 75%;
+  padding: 2% 0%;
+`;
+const InputMember = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  height: 40%;
+`;
+const InputNumber = styled.input`
+  width: 80%;
+  height: auto;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-left: 20px;
+  padding-left: 2%;
+  margin-bottom: 5%;
+  background: none;
+  border: 3px solid rgba(199, 199, 199, 0.5);
+  border-radius: 10px;
+`;
+const InputName = styled.input`
+  width: 80%;
+  height: auto;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-left: 20px;
+  margin-bottom: 5%;
+  padding-left: 2%;
+  background: none;
+  border: 3px solid rgba(199, 199, 199, 0.5);
+  border-radius: 10px;
+`;
+
+const AddMemberButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: auto;
+  margin-left: 20px;
+  padding: 10px;
+  font-size: 30px;
+  color: black;
+  border-radius: 15px;
+  background-color: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
     0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
     0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+  :hover {
+    cursor: pointer;
+    color: #b3b3b3;
+  }
+`;
+const Span = styled.span`
+  font-size: 20px;
+  font-weight: 500;
 `;
