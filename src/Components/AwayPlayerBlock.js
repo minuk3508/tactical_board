@@ -83,7 +83,7 @@ const PlayerPoint = styled.div`
   width: 1px;
   height: 1px;
   top: ${(props) => props.toppoint};
-  left: ${(props) => props.point};
+  right: ${(props) => props.point};
   background-color: #3ba13b;
   border-radius: 30px;
   z-index: 1;

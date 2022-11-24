@@ -23,12 +23,12 @@ export default function BoardPage() {
           <Title transformValue={transformValue ? "-150%" : "0%"}>
             Tactics Board
           </Title>
-          <FullButton
+          {/* <FullButton
             onClick={fullScreenMode}
             transformYValue={transformValue ? "-150%" : "0%"}
           >
             {transformValue ? "edit list" : "board only"}
-          </FullButton>
+          </FullButton> */}
           <CanvasWrapper
             ref={canvas}
             transformValue={transformValue ? "80%" : "50%"}

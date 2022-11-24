@@ -4,11 +4,6 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { homePlayerListState } from "../AtomStore";
 import HomeMemberTags from "./MemberTag_home";
-import {
-  BsBoxArrowLeft,
-  BsBoxArrowRight,
-  BsChevronDoubleLeft,
-} from "react-icons/bs";
 
 export default function CreateHomeBox() {
   const [numbering, setNumbering] = useState("");
